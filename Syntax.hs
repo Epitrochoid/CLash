@@ -13,7 +13,8 @@ data Kernel = Kernel Name [Parameter] VecExpr
 
 -- | Parameters are the input and output
 --   vectors, each has a type.
-data Parameter = Parameter Type Name
+data Parameter = Input Type Name
+               | Output Type Name
                deriving Show
 
 -- | Represents the types of parameters and
