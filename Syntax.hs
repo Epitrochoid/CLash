@@ -23,6 +23,6 @@ data Type = Float
 
 -- | AST for vector operations, the meat of
 --   what an OpenCL kernel does.
-data VecExpr = Vec Type
+data VecExpr = Vec Name Type
              | Add VecExpr VecExpr
              deriving Show
