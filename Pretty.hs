@@ -10,6 +10,6 @@ import Data.Text hiding (empty)
 paramList :: [Parameter] -> Doc
 paramList [] = empty
 paramList ((Output t n):xs) =
-        text ("__global " ++ (show t) ++ " *" ++ (unpack n))
+        text ("__global " ++ (show t) ++ " *" ++ (unpack n)) <+> (paramList xs)
 paramList ((Input t n):xs) =
         text ("__global const " ++ (show t) ++ " *" ++ (unpack n) ++ ",") <+> (paramList xs)
