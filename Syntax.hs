@@ -1,7 +1,9 @@
 module Syntax where
 
+import Data.Text
+
 -- | Convenience type for things that need names
-type Name = String
+type Name = Text
 
 -- | Top level data type, a kernel has a name,
 --   a list of parameters, and a VecExpr tree
@@ -19,7 +21,12 @@ data Parameter = Parameter Type Name
 --   not Haskell types.
 data Type = Float
           | Int
-          deriving Show
+
+-- | Manual Show instance to avoid double
+--   quote marks and fix capitalization.
+instance Show Type where
+        show Float = "float"
+        show Int   = "int"
 
 -- | AST for vector operations, the meat of
 --   what an OpenCL kernel does.
