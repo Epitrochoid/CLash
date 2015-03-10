@@ -13,3 +13,9 @@ paramList ((Output t n):xs) =
         text ("__global " ++ (show t) ++ " *" ++ (unpack n)) <+> (paramList xs)
 paramList ((Input t n):xs) =
         text ("__global const " ++ (show t) ++ " *" ++ (unpack n) ++ ",") <+> (paramList xs)
+
+-- | Turns a VecExpr tree into its inline
+--   OpenCL representation.
+flattenVecExpr :: VecExpr -> Doc
+flattenVecExpr (Vec n _) = text $ (unpack n) ++ "[gid]"
+flattenVecExpr (Add a b) = (flattenVecExpr a) <+> (text "+") <+> (flattenVecExpr b)
